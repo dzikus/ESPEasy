@@ -46,6 +46,7 @@ enum
   BME280_REGISTER_HUMIDDATA          = 0xFD,
 
   BME280_CONTROL_SETTING             = 0x57, // Oversampling: 16x P, 2x T, normal mode
+  BME280_CONFIG_SETTING              = 0xE0, // Tstandby 1000ms, filter 16, 3-wire SPI Disable
 };
 
 typedef struct
@@ -227,6 +228,7 @@ bool Plugin_028_begin(uint8_t a) {
   Plugin_028_readCoefficients(_i2caddr & 0x01);
   Plugin_028_write8(BME280_REGISTER_CONTROLHUMID, 0x03);
   Plugin_028_write8(BME280_REGISTER_CONTROL, BME280_CONTROL_SETTING);
+  Plugin_028_write8(BME280_REGISTER_CONFIG, BME280_CONFIG_SETTING);
   return true;
 }
 
